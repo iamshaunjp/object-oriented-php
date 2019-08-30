@@ -30,15 +30,24 @@
 
   }
 
+  class AdminUser extends User {
+
+    public $level;
+
+    public function __construct($username, $email, $level){
+      parent::__construct($username, $email);
+      $this->level = $level; 
+    }
+
+  }
+
   $userOne = new User('mario', 'mario@thenetninja.co.uk');
   $userTwo = new User('luigi', 'luigi@thenetninja.co.uk');
+  $userThree = new AdminUser('yoshi', 'yoshi@thenetninja.co.uk', 5);
 
-  echo $userOne->getEmail() . '<br>';
-  echo $userTwo->getEmail() . '<br>';
-  
-  $userTwo->setEmail('yoshi@thenetninja.co.uk');
-  
-  echo $userTwo->getEmail() . '<br>';
+  echo $userThree->level . '<br>';
+  echo $userThree->username . '<br>';
+  echo $userThree->getEmail() . '<br>';
 
 ?>
 
