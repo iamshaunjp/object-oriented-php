@@ -18,7 +18,7 @@
     }
 
     public function message(){
-      return "$this->username sent a new message";
+      return "$this->email sent a new message";
     }
 
     // getters
