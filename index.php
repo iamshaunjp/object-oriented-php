@@ -1,64 +1,28 @@
 <?php 
 
-  class User {
+  class Weather {
 
-    public $username;
-    protected $email;
-    public $role = 'member';
+    public static $tempConditions = ['cold', 'mild', 'warm'];
 
-    public function __construct($username, $email){
-      //$this->username = 'ken';
-      $this->username = $username;
-      $this->email = $email;
+    public static function celsiusToFarenheit($c){
+      return $c * 9 / 5 + 32;
     }
 
-    public function addFriend(){
-      //return "added a new friend";
-      return "$this->username just added a new friend";
-    }
-
-    public function message(){
-      return "$this->email sent a new message";
-    }
-
-    // getters
-    public function getEmail(){
-      return $this->email;
-    }
-
-    // setters
-    public function setEmail($username){
-      if(strpos($username, '@') > -1){
-        $this->email = $username;
-      };
+    public static function determineTempCondition($f){
+      if($f < 40){
+        return self::$tempConditions[0];
+      } elseif($f < 70){
+        return self::$tempConditions[1];
+      } else {
+        return self::$tempConditions[2];
+      }
     }
 
   }
 
-  class AdminUser extends User {
-
-    public $level;
-    public $role = 'admin';
-
-    public function __construct($username, $email, $level){
-      parent::__construct($username, $email);
-      $this->level = $level; 
-    }
-
-    public function message(){
-      return "admin $this->email sent a new message";
-    }
-
-  }
-
-  $userOne = new User('mario', 'mario@thenetninja.co.uk');
-  $userTwo = new User('luigi', 'luigi@thenetninja.co.uk');
-  $userThree = new AdminUser('yoshi', 'yoshi@thenetninja.co.uk', 5);
-
-  echo $userOne->message() . '<br>';
-  echo $userThree->message() . '<br>'; 
-
-  //echo $userOne->email . '<br>';
+  //print_r(Weather::$tempConditions);
+  //echo Weather::celsiusToFarenheit(20);
+  echo Weather::determineTempCondition(80);
 
 ?>
 
