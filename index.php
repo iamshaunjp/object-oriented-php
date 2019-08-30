@@ -3,7 +3,7 @@
   class User {
 
     public $username;
-    private $email;
+    protected $email;
     public $role = 'member';
 
     public function __construct($username, $email){
@@ -18,7 +18,7 @@
     }
 
     public function message(){
-      return "$this->username sent a new message";
+      return "$this->email sent a new message";
     }
 
     // getters
@@ -46,7 +46,7 @@
     }
 
     public function message(){
-      return "an admin sent a new message";
+      return "admin $this->email sent a new message";
     }
 
   }
@@ -55,11 +55,10 @@
   $userTwo = new User('luigi', 'luigi@thenetninja.co.uk');
   $userThree = new AdminUser('yoshi', 'yoshi@thenetninja.co.uk', 5);
 
-  echo $userOne->role . '<br>';
-  echo $userThree->role . '<br>';
-
   echo $userOne->message() . '<br>';
   echo $userThree->message() . '<br>'; 
+
+  //echo $userOne->email . '<br>';
 
 ?>
 
